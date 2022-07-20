@@ -1,7 +1,8 @@
+import colors from "colors";
 const moneySplitter = (goal: string, value: string) => {
   const counts = [100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000];
   let amount = +value;
-  console.log("Input : ", new Array(+goal, amount));
+  console.log("Input : ".yellow, new Array(+goal, amount));
   let divider = 0;
   let initialValue = 0;
   let lastValue = 0;

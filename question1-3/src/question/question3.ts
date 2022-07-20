@@ -9,7 +9,6 @@ const question3 = async () => {
     `.yellow
   );
   const initialValue = [23000, 4];
-  console.log("Input :".yellow, initialValue, "\n");
   const initialResult = moneySplitter(
     `${initialValue[0]}`,
     `${initialValue[1]}`
