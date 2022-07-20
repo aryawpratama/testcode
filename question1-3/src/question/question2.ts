@@ -1,6 +1,6 @@
 import axios from "axios";
 import colors from "colors";
-import convertToUSD from "function/convertToUSD";
+import convertToUSD from "../function/convertToUSD";
 import prompt from "../helper/prompt";
 interface IValue {
   amount: number;
