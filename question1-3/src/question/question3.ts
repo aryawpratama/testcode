@@ -1,36 +1,32 @@
-const question3 = () => {
-  const counts = [100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000];
-  const goal = 23000;
-  const amount = 3;
-  let pembagi = 0;
-  let puluhan = 0;
-  let lastValue = 0;
-  const result = [];
-  do {
-    if (lastValue === 0) {
-      lastValue = goal;
-    }
-    const data = counts.reduce((prev, curr) =>
-      Math.abs(curr - lastValue) < Math.abs(prev - lastValue) ? curr : prev
-    );
-    let absValue = 0;
-    if (lastValue < data) {
-      const arrIndex = counts.findIndex((val) => data === val);
-      absValue = counts[arrIndex - 1];
-    } else {
-      absValue = data;
-    }
-    if (puluhan === 0) {
-      puluhan = absValue;
-      result.push(puluhan);
-    }
-    amount === pembagi
-      ? (lastValue = lastValue)
-      : (lastValue = lastValue - absValue);
-    lastValue !== 0 && result.push(lastValue);
-    console.log(lastValue);
-    console.log(result);
-    pembagi += 1;
-  } while (pembagi < amount);
+import moneySplitter from "../function/moneySplitter";
+import prompt from "../helper/prompt";
+import colors from "colors";
+const question3 = async () => {
+  colors.enable();
+  console.log(
+    `
+    III. Hitung berapa lembar uang
+    `.yellow
+  );
+  const initialValue = [23000, 4];
+  console.log("Input :".yellow, initialValue, "\n");
+  const initialResult = moneySplitter(
+    `${initialValue[0]}`,
+    `${initialValue[1]}`
+  );
+  console.log("Result :".green, initialResult, "\n");
+  const respond = ["Y", "y", "yes", "Yes"];
+  const userRespond = await prompt("Want to try by your self? Y/N : ");
+  if (respond.includes(userRespond)) {
+    let isDone = false;
+    do {
+      const goal = await prompt("Input money value : ");
+      const value = await prompt("Input divider : ");
+      const result = moneySplitter(goal, value);
+      console.log("Result : ".green, result);
+      const respondUser = await prompt("Try again? Y/N : ");
+      isDone = respond.includes(respondUser);
+    } while (isDone);
+  }
 };
 export default question3;
